@@ -1,0 +1,16 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# Excess mortality data
+
+```{r, echo = FALSE}
+knitr::include_graphics("figs/fig_es_ES.png")
+```
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("figs/fig_en_US.png")
+```
