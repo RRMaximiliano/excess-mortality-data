@@ -15,8 +15,10 @@ df <- read_csv("https://raw.githubusercontent.com/TheEconomist/covid-19-the-econ
 
 # Months and CA df --------------------------------------------------------
 
-months <- tibble(yday = c(1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335),
-								 label = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+months <- tibble(
+	yday = c(1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335),
+	label = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+	)
 
 df_ca <- df %>% 
 	filter(
@@ -33,7 +35,6 @@ df_ca <- df %>%
 		excess = 5,
 		covid = 6
 	)
-
 
 # Plot --------------------------------------------------------------------
 
@@ -65,10 +66,12 @@ for (l in names(languages)) {
 	if(l == "es_ES") {
 		months <- months %>% 
 			mutate(
-				label = case_when(label == "Jan" ~ "Ene",
-													label == "Apr" ~ "Abr",
-													label == "Aug" ~ "Ago",
-													TRUE ~ as.character(label))
+				label = case_when(
+					label == "Jan" ~ "Ene",
+					label == "Apr" ~ "Abr",
+					label == "Aug" ~ "Ago",
+					TRUE ~ as.character(label)
+				)
 			)
 	}
 	
@@ -127,13 +130,17 @@ for (l in names(languages)) {
 	png <- paste0("fig_econ_", l, ".png")
 	pdf <- paste0("fig_econ_", l, ".pdf")
 	
-	ggsave(fig, 
-				 filename = here::here("figs", png),
-				 dpi = 720, height = 8, width = 18, scale = 0.9) 
+	ggsave(
+		fig, 
+		filename = here::here("figs", png),
+		dpi = 720, height = 8, width = 18, scale = 0.9
+	) 
 	
-	ggsave(fig, 
-				 filename = here::here("figs", pdf),
-				 device = cairo_pdf,
-				 height = 8, width = 18, scale = 0.9)
+	ggsave(
+		fig, 
+		filename = here::here("figs", pdf),
+		device = cairo_pdf,
+		height = 8, width = 18, scale = 0.9
+	)
 
 }
